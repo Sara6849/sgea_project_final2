@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Eventos Acadêmicos - SGEA{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 900px; margin: 3rem auto;">
+  {% if user.is_authenticated %}
+  <h1 style="font-size: 2.2rem; color: #43054E; margin-bottom: 0.5rem;">
+    Olá, {{ user.first_name|default:user.username }}! Seja bem-vindo de volta 👋
+  </h1>
+{% endif %}
+
+<h2 style="color: #43054E; margin-top: 1rem;">🎓 Eventos Acadêmicos</h2>
+
+  <p style="margin-bottom: 2rem;">
+    Explore os eventos disponíveis e participe das atividades que fortalecem sua jornada universitária.
+  </p>
+
+  {% if events %}
+    <div style="display: flex; flex-direction: column; gap: 1.2rem;">
+      {% for event in events %}
+        <div class="event-card" style="background-color: #f9f9f9; padding: 1rem 1.2rem; border-radius: 8px; box-shadow: 0 1px 6px rgba(0,0,0,0.05);">
+          <h3 style="margin-top: 0; margin-bottom: 0.5rem; font-size: 1.2rem; color: #43054E;">{{ event.title }}</h3>
+          <p style="margin: 0.3rem 0;"><strong>Data:</strong> {{ event.start_date }} às {{ event.start_time }}</p>
+          <p style="margin: 0.3rem 0;"><strong>Local:</strong> {{ event.location }}</p>
+          <div style="margin-top: 0.8rem;">
+            <a href="{% url 'core:event_detail' event.id %}" class="btn" style="padding: 0.3rem 0.8rem; font-size: 0.8rem; background-color: #43054E; color: white; border-radius: 4px;">🔍 Ver detalhes</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p style="margin-top: 2rem; color: #777;">Nenhum evento disponível no momento.</p>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}SGEA{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto+Slab:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="body-wrapper">
+    <!-- Cabeçalho -->
+    <header>
+      <div class="logo">
+  <a href="{% url 'core:home' %}">
+    <img src="{% static 'image/sgea.png' %}" alt="Logo SGEA" style="height: 80px;">
+  </a>
+</div>
+
+      <nav>
+        <a href="{% url 'core:home' %}" class="btn">Home</a>
+        <a href="{% url 'core:events' %}" class="btn">Eventos</a>
+        {% if user.is_authenticated %}
+          <a href="{% url 'core:profile' %}" class="btn">Meu Perfil</a>
+          <a href="{% url 'core:logout' %}" class="btn cancel">Sair</a>
+        {% else %}
+          <a href="{% url 'core:login' %}" class="btn">Entrar</a>
+          
+        {% endif %}
+      </nav>
+    </header>
+
+    <!-- Conteúdo principal -->
+    <main>
+      {% block content %}{% endblock %}
+      <div style="height: 1px;"></div>
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+      <p>&copy; {{ now.year }} SGEA - CEUB. Todos os direitos reservados.</p>
+    </footer>
+  </div>
+</body>
+</html>

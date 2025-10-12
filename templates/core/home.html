@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}SGEA - Home{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 900px; margin: 3rem auto;">
+  <div class="welcome-box" style="background-color: #fff; padding: 3rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); text-align: center; margin-bottom: 3rem;">
+    <h1 style="font-size: 2.5rem; color: #43054E; margin-bottom: 0.5rem;">🎓 Bem-vindo ao SGEA</h1>
+    <p style="font-size: 1.2rem; color: #777; margin-bottom: 1.5rem;">Sistema de Gestão de Eventos Acadêmicos do CEUB</p>
+    <p style="font-size: 1.05rem; color: #444; line-height: 1.6;">
+      Desenvolvido para facilitar a <strong>organização</strong>, <strong>divulgação</strong> e <strong>participação</strong> em eventos institucionais. Aqui você pode se inscrever, acompanhar sua presença e explorar oportunidades acadêmicas que impulsionam sua jornada universitária.
+    </p>
+  </div>
+
+  {% if user.is_authenticated and user.role == 'organizer' %}
+    <div style="margin-bottom: 2rem; text-align: right;">
+      <a href="{% url 'core:event_form' %}" class="btn" style="background-color: #43054E; color: white; padding: 0.5rem 1rem; font-size: 0.9rem; border-radius: 6px;">➕ Adicionar Evento</a>
+    </div>
+  {% endif %}
+
+  <h3 style="margin-bottom: 1rem;">🎓 Eventos em destaque</h3>
+
+  {% if events %}
+    <div style="display: flex; flex-direction: column; gap: 1rem;">
+      {% for event in events %}
+        <div class="event-card" style="background-color: #f9f9f9; padding: 1rem 1.2rem; border-radius: 8px; box-shadow: 0 1px 6px rgba(0,0,0,0.05);">
+          <h3 style="margin-top: 0; margin-bottom: 0.5rem; font-size: 1.2rem; color: #43054E;">{{ event.title }}</h3>
+          <p style="margin: 0.3rem 0;"><strong>Data:</strong> {{ event.start_date }} às {{ event.start_time }}</p>
+          <p style="margin: 0.3rem 0;"><strong>Local:</strong> {{ event.location }}</p>
+          <div style="margin-top: 0.8rem;">
+            <a href="{% url 'core:event_detail' event.id %}" class="btn" style="padding: 0.3rem 0.8rem; font-size: 0.8rem; background-color: #43054E; color: white; border-radius: 4px;">🔍 Ver detalhes</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p style="margin-top: 2rem; color: #777;">Nenhum evento disponível no momento.</p>
+  {% endif %}
+
+  <div style="margin-top: 3rem;">
+    <h3>📣 Avisos importantes</h3>
+    <p>✅ Os certificados dos eventos de setembro já estão disponíveis na área do participante.</p>
+    <p>📌 Fique atento aos prazos de inscrição para eventos com vagas limitadas.</p>
+  </div>
+</div>
+{% endblock %}

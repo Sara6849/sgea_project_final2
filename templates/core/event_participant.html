@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Participantes - SGEA{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 800px; margin: 3rem auto; background-color: #fff; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 16px rgba(0,0,0,0.06);">
+  <h2 style="text-align: center; margin-bottom: 1.5rem; color: #43054E;">👥 Participantes de <span style="color: #000;">{{ event.title }}</span></h2>
+
+  <table style="width: 100%; border-collapse: collapse;">
+    <thead>
+      <tr style="background-color: #f0f0f0;">
+        <th style="text-align: left; padding: 0.8rem; border-bottom: 1px solid #ddd;">Nome</th>
+        <th style="text-align: left; padding: 0.8rem; border-bottom: 1px solid #ddd;">Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for participant in participants %}
+        <tr>
+          <td style="padding: 0.6rem; border-bottom: 1px solid #eee;">{{ participant.name }}</td>
+          <td style="padding: 0.6rem; border-bottom: 1px solid #eee;">{{ participant.email }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="2" style="padding: 1rem; text-align: center; color: #777;">Nenhum participante registrado.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

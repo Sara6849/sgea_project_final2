@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
+<<<<<<< HEAD
 from .models import Event
 from django.core.exceptions import ValidationError
 import datetime
@@ -9,11 +10,18 @@ User = get_user_model()
 
 # ------------------ REGISTER FORM ------------------
 
+=======
+
+User = get_user_model()
+
+# Formulário de cadastro
+>>>>>>> d777e06a7afec3224da65659784b0ef318e76793
 class RegisterForm(UserCreationForm):
     email = forms.EmailField(required=True)
     first_name = forms.CharField(label='Nome', max_length=50)
     last_name = forms.CharField(label='Sobrenome', max_length=50)
 
+<<<<<<< HEAD
     phone = forms.CharField(
         label="Telefone",
         widget=forms.TextInput(attrs={'placeholder': '(00) 00000-0000'})
@@ -35,11 +43,19 @@ class RegisterForm(UserCreationForm):
 
 # ------------------ EDIT PROFILE FORM ------------------
 
+=======
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2', 'role']
+
+# Formulário de edição de perfil
+>>>>>>> d777e06a7afec3224da65659784b0ef318e76793
 class EditProfileForm(forms.ModelForm):
     first_name = forms.CharField(label='Nome', max_length=50)
     last_name = forms.CharField(label='Sobrenome', max_length=50)
     email = forms.EmailField(label='Email')
 
+<<<<<<< HEAD
     phone = forms.CharField(
         label="Telefone",
         widget=forms.TextInput(attrs={'placeholder': '(00) 00000-0000'})
@@ -52,16 +68,29 @@ class EditProfileForm(forms.ModelForm):
 
 # ------------------ LOGIN FORM ------------------
 
+=======
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']
+
+# Formulário de login
+>>>>>>> d777e06a7afec3224da65659784b0ef318e76793
 class LoginForm(forms.Form):
     username = forms.CharField(label='Usuário', max_length=50)
     password = forms.CharField(label='Senha', widget=forms.PasswordInput)
 
+<<<<<<< HEAD
 
 # ------------------ EVENT FORM ------------------
+=======
+from django import forms
+from .models import Event
+>>>>>>> d777e06a7afec3224da65659784b0ef318e76793
 
 class EventForm(forms.ModelForm):
     class Meta:
         model = Event
+<<<<<<< HEAD
         fields = [
             'title', 'event_type', 'start_date', 'end_date',
             'start_time', 'end_time', 'location', 'description',
@@ -107,3 +136,6 @@ class EventForm(forms.ModelForm):
             if banner.size > 5*1024*1024:
                 raise ValidationError("O tamanho da imagem não pode ultrapassar 5MB.")
         return banner
+=======
+        exclude = ['organizer']
+>>>>>>> d777e06a7afec3224da65659784b0ef318e76793

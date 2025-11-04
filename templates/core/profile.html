@@ -2,6 +2,7 @@
 {% block title %}Perfil - SGEA{% endblock %}
 
 {% block content %}
+<<<<<<< HEAD
 <div class="container" style="max-width: 700px; margin: 3rem auto;">
   <h2 style="color: #43054E; margin-bottom: 1rem;">👤 Meu Perfil</h2>
 
@@ -53,4 +54,37 @@
     </div>
   </div>
 </div>
+=======
+  <div class="container" style="max-width: 600px; margin: 3rem auto;">
+    <h2 style="color: #43054E; margin-bottom: 1rem;">👤 Meu Perfil</h2>
+
+    <div style="background-color: #fff; border-left: 6px solid #E63973; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+      <p><strong>Usuário:</strong> {{ user.username }}</p>
+      <p><strong>Nome:</strong> {{ user.first_name }}</p>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+
+      {% if user.profile.course %}
+        <p><strong>Curso:</strong> {{ user.profile.course }}</p>
+      {% endif %}
+
+      <hr style="margin: 1.5rem 0;">
+
+      <h4 style="color: #43054E;">📅 Meus Eventos Inscritos</h4>
+      {% if registered_events %}
+        <ul>
+          {% for event in registered_events %}
+            <li>{{ event.title }} — {{ event.start_date }}</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="no-events">Você ainda não está inscrito em nenhum evento.</p>
+      {% endif %}
+
+      <div style="margin-top: 2rem; text-align: center;">
+        <a href="{% url 'core:edit_profile' %}" class="btn">✏️ Editar perfil</a>
+        <a href="{% url 'core:logout' %}" class="btn" style="background-color: #ccc; color: #43054E; margin-left: 1rem;">Sair</a>
+      </div>
+    </div>
+  </div>
+>>>>>>> d777e06a7afec3224da65659784b0ef318e76793
 {% endblock %}

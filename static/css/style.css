@@ -219,6 +219,7 @@ main {
 .btn.cancel {
   background-color: #ccc;
   color: #43054E;
+<<<<<<< HEAD
 }/* ===== Novas classes para SGEA e Certificados ===== */
 
 /* Texto roxo SGEA */
@@ -306,4 +307,6 @@ h2.text-ceub, h3.text-ceub {
 /* Hover botão rosa */
 .btn-rosa:hover {
     background-color: #ff4f9a;
+=======
+>>>>>>> d777e06a7afec3224da65659784b0ef318e76793
 }

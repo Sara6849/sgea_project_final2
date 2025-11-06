@@ -17,6 +17,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+<<<<<<< HEAD
     'rest_framework',
     'rest_framework_simplejwt',
     'core',  # seu app principal
@@ -31,6 +32,11 @@ REST_FRAMEWORK = {
     )
 }
 
+=======
+    'core',  # seu app principal
+]
+
+>>>>>>> d777e06a7afec3224da65659784b0ef318e76793
 # ---------------- Middlewares ----------------
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -117,6 +123,9 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
 AUTH_USER_MODEL = 'core.User'
+<<<<<<< HEAD
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+=======
+>>>>>>> d777e06a7afec3224da65659784b0ef318e76793

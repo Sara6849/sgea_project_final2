@@ -2,6 +2,7 @@
 {% block title %}{{ event.title }} - SGEA{% endblock %}
 
 {% block content %}
+<<<<<<< HEAD
 <div class="container" style="max-width: 700px; margin: 3rem auto;">
   <div class="card shadow-sm border-0">
     <div class="card-body">
@@ -15,12 +16,19 @@
       {% endif %}
 
       <h2 class="text-ceub mb-3">📌 {{ event.title }}</h2>
+=======
+  <div class="container" style="max-width: 600px; margin: 3rem auto;">
+    <h2 style="color: #43054E; margin-bottom: 1rem;">📌 {{ event.title }}</h2>
+
+    <div style="background-color: #fff; border-left: 6px solid #E63973; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+>>>>>>> d777e06a7afec3224da65659784b0ef318e76793
       <p><strong>📂 Tipo:</strong> {{ event.get_event_type_display }}</p>
       <p><strong>🗓 Data:</strong> {{ event.start_date }} às {{ event.start_time }}</p>
       <p><strong>📍 Local:</strong> {{ event.location }}</p>
       <p><strong>👤 Responsável:</strong> {{ event.organizer }}</p>
 
       {% if event.description %}
+<<<<<<< HEAD
       <hr>
       <p>{{ event.description }}</p>
       {% endif %}
@@ -58,4 +66,21 @@
     </div>
   </div>
 </div>
+=======
+        <hr style="margin: 1.5rem 0;">
+        <p style="font-size: 0.95rem;">{{ event.description }}</p>
+      {% endif %}
+
+      <form method="post" style="margin-top: 2rem; text-align: center;">
+        {% csrf_token %}
+        {% if registered %}
+          <button type="submit" name="unsubscribe" class="btn highlight">❌ Cancelar inscrição</button>
+        {% else %}
+          <button type="submit" name="subscribe" class="btn">✅ Inscrever-se</button>
+        {% endif %}
+        <a href="{% url 'core:events' %}" class="btn" style="background-color: #ccc; color: #43054E; margin-left: 1rem;">Voltar</a>
+      </form>
+    </div>
+  </div>
+>>>>>>> d777e06a7afec3224da65659784b0ef318e76793
 {% endblock %}

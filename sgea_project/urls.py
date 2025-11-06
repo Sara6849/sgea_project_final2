@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
+<<<<<<< HEAD
 from django.conf import settings
 from django.conf.urls.static import static
 from drf_yasg.views import get_schema_view
@@ -26,3 +27,10 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+=======
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('core.urls')),  # todas as rotas do core
+]
+>>>>>>> d777e06a7afec3224da65659784b0ef318e76793
